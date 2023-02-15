@@ -1,0 +1,25 @@
+{
+  "search.exclude": {
+    "**/.sst": true
+  },
+  "serverlessConsole.services": [
+    {
+      "type": "custom",
+      "title": "tesst",
+      "timeOffsetInMs": 0,
+      "awsProfile": "default",
+      "items": [
+        {
+          "title": "/aws/lambda/dev-sst3-SST3-apiLambdaGETtrpcproxy6210E367-QZC5QNzApOzM",
+          "tabs": [
+            {
+              "region": "us-east-1",
+              "title": "dev",
+              "logs": "/aws/lambda/dev-sst3-SST3-apiLambdaGETtrpcproxy6210E367-QZC5QNzApOzM"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
