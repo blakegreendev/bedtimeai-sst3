@@ -5,8 +5,19 @@ import {
 } from "@trpc/server/adapters/aws-lambda";
 import { APIGatewayProxyEventV2 } from "aws-lambda";
 import { z } from "zod";
+import { ChatGPTAPI } from "chatgpt";
+import { Config } from "sst/node/config";
 
 export const t = initTRPC.create();
+
+const getStory = async (input: string) => {
+  const api = new ChatGPTAPI({
+    apiKey: Config.OPEN_API_KEY,
+  });
+
+  const res = await api.sendMessage(`hello ${input}`);
+  return res.text;
+};
 
 export const appRouter = t.router({
   hello: t.procedure
@@ -15,10 +26,8 @@ export const appRouter = t.router({
         text: z.string(),
       })
     )
-    .query(({ input }) => {
-      return {
-        greeting: `hello ${input.text} from LAMBDA`,
-      };
+    .query(async ({ input }) => {
+      return await getStory(input.text);
     }),
 });
 // export type definition of API

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@trpc/server": "^10.11.0",
+    "chatgpt": "^4.4.0",
     "sst": "^2.0.17",
     "superjson": "^1.12.2",
     "zod": "^3.20.6"
