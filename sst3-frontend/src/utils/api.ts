@@ -7,12 +7,14 @@
  */
 import { httpBatchLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
+import superjson from "superjson";
 import type { AppRouter } from "../../../packages/functions/src/trpc";
 
 /** A set of type-safe react-query hooks for your tRPC API. */
 export const trpc = createTRPCNext<AppRouter>({
   config() {
     return {
+      transformer: superjson,
       links: [
         httpBatchLink({
           url: `${process.env.NEXT_API_ENDPOINT}/trpc`,

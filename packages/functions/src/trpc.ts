@@ -10,24 +10,27 @@ import { Config } from "sst/node/config";
 
 export const t = initTRPC.create();
 
-const getStory = async (input: string) => {
+const getStory = async (name: string, theme: string) => {
   const api = new ChatGPTAPI({
     apiKey: Config.OPEN_API_KEY,
   });
 
-  const res = await api.sendMessage(`hello ${input}`);
+  const res = await api.sendMessage(
+    `Create a 2 to 3 minute bedtime story about ${name} and with ${theme} theme.`
+  );
   return res.text;
 };
 
 export const appRouter = t.router({
-  hello: t.procedure
+  story: t.procedure
     .input(
       z.object({
-        text: z.string(),
+        name: z.string(),
+        theme: z.string(),
       })
     )
     .query(async ({ input }) => {
-      return await getStory(input.text);
+      return await getStory(input.name, input.theme);
     }),
 });
 // export type definition of API
