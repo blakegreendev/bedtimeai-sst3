@@ -4,7 +4,7 @@ export function SST3({ stack }: StackContext) {
   const OPEN_API_KEY = new Config.Secret(stack, "OPEN_API_KEY");
   const api = new Api(stack, "api", {
     routes: {
-      "GET /trpc/{proxy+}": {
+      "POST /trpc/{proxy+}": {
         function: {
           handler: "packages/functions/src/trpc.handler",
           runtime: "nodejs18.x",
