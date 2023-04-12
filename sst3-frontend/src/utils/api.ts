@@ -17,8 +17,8 @@ export const trpc = createTRPCNext<AppRouter>({
       transformer: superjson,
       links: [
         httpBatchLink({
-          // url: `${process.env.NEXT_API_ENDPOINT}/trpc`,
-          url: "https://4yidn40b2d.execute-api.us-east-1.amazonaws.com/trpc",
+          url: `${process.env.NEXT_API_ENDPOINT}/trpc`,
+          //url: "https://4yidn40b2d.execute-api.us-east-1.amazonaws.com/trpc",
         }),
       ],
     };

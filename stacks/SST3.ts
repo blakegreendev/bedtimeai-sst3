@@ -23,8 +23,8 @@ export function SST3({ stack }: StackContext) {
       NEXT_API_ENDPOINT: api.url,
     },
     customDomain: {
-      domainName: "blakegreen.dev",
-      domainAlias: "bedtimeai.blakegreen.dev",
+      hostedZone: "blakegreen.dev",
+      domainName: "bedtimeai.blakegreen.dev",
     },
   });
   stack.addOutputs({
