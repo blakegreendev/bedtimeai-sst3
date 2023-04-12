@@ -8,8 +8,9 @@ export function SST3({ stack }: StackContext) {
         function: {
           handler: "packages/functions/src/trpc.handler",
           runtime: "nodejs18.x",
+          timeout: 60,
           nodejs: {
-            install: ["chatgpt"],
+            install: ["openai"],
           },
         },
       },
@@ -21,8 +22,15 @@ export function SST3({ stack }: StackContext) {
     environment: {
       NEXT_API_ENDPOINT: api.url,
     },
+    customDomain: {
+      domainName: "blakegreen.dev",
+      domainAlias: "bedtimeai.blakegreen.dev",
+    },
   });
   stack.addOutputs({
     ApiEndpoint: api.url,
+  });
+  stack.addOutputs({
+    SiteEndpoint: site.url || "localhost",
   });
 }

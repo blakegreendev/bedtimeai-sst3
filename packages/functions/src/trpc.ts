@@ -5,10 +5,16 @@ import {
 } from "@trpc/server/adapters/aws-lambda";
 import { APIGatewayProxyEventV2 } from "aws-lambda";
 import { z } from "zod";
-import { ChatGPTAPI } from "chatgpt";
+import superjson from "superjson";
 import { Config } from "sst/node/config";
 
-export const t = initTRPC.create();
+import { Configuration, OpenAIApi } from "openai";
+const configuration = new Configuration({
+  apiKey: Config.OPEN_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+export const t = initTRPC.create({ transformer: superjson });
 
 export const appRouter = t.router({
   story: t.procedure
@@ -19,15 +25,20 @@ export const appRouter = t.router({
       })
     )
     .mutation(async ({ input }) => {
-      const api = new ChatGPTAPI({
-        apiKey: Config.OPEN_API_KEY,
+      console.log(input);
+      const response = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        // max_tokens: 10,
+        messages: [
+          {
+            role: "user",
+            content: `Create a bedtime story about ${input.name} with the theme of ${input.theme}`,
+          },
+        ],
       });
 
-      const res = await api.sendMessage(
-        `hello world from ${input.name} with ${input.theme} theme`
-        // `Create a 2 to 3 minute bedtime story about ${input.name} and with ${input.theme} theme.`
-      );
-      return res.text;
+      console.log(response.data);
+      return response.data;
     }),
 });
 // export type definition of API
@@ -38,6 +49,7 @@ const createContext = ({
   event,
   context,
 }: CreateAWSLambdaContextOptions<APIGatewayProxyEventV2>) => ({}); // no context
+
 type Context = inferAsyncReturnType<typeof createContext>;
 export const handler = awsLambdaRequestHandler({
   router: appRouter,

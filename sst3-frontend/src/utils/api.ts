@@ -12,20 +12,16 @@ import type { AppRouter } from "../../../packages/functions/src/trpc";
 
 /** A set of type-safe react-query hooks for your tRPC API. */
 export const trpc = createTRPCNext<AppRouter>({
-  config() {
+  config({ ctx }) {
     return {
       transformer: superjson,
       links: [
         httpBatchLink({
-          url: `${process.env.NEXT_API_ENDPOINT}/trpc`,
+          // url: `${process.env.NEXT_API_ENDPOINT}/trpc`,
+          url: "https://4yidn40b2d.execute-api.us-east-1.amazonaws.com/trpc",
         }),
       ],
     };
   },
-  /**
-   * Whether tRPC should await queries when server rendering pages.
-   *
-   * @see https://trpc.io/docs/nextjs#ssr-boolean-default-false
-   */
   ssr: true,
 });
