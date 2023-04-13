@@ -36,6 +36,12 @@ export const appRouter = t.router({
           },
         ],
       });
+      // const image = await openai.createImage({
+      //   prompt: story.data.choices[0].message?.content as string,
+      //   n: 1,
+      //   size: "1024x1024",
+      // });
+      // console.log(image.data);
 
       console.log(response.data);
       return response.data;
