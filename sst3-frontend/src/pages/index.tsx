@@ -96,7 +96,7 @@ const Home: NextPage = () => {
 
         {/* <div className="grid grid-cols-1 gap-6 bg-white px-14 py-5 dark:bg-gray-900 sm:grid-cols-3">
           <div className="col-span-2"> */}
-        <p className="mb-3 bg-white px-14 py-5 text-gray-500 dark:bg-gray-900 dark:text-gray-400 ">
+        <p className="mb-3 bg-white px-14 py-5 text-gray-500 first-letter:float-left first-letter:mr-3 first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 first-line:uppercase first-line:tracking-widest dark:bg-gray-900 dark:text-gray-400 dark:first-letter:text-gray-100">
           {story}
         </p>
         {createStory.isLoading && (
