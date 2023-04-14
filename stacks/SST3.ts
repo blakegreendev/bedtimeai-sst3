@@ -20,7 +20,7 @@ export function SST3({ stack }: StackContext) {
   const site = new NextjsSite(stack, "site", {
     path: "sst3-frontend",
     environment: {
-      NEXT_API_ENDPOINT: api.url,
+      NEXT_PUBLIC_API_ENDPOINT: api.url,
     },
     customDomain: {
       hostedZone: "blakegreen.dev",

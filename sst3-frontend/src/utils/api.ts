@@ -17,11 +17,11 @@ export const trpc = createTRPCNext<AppRouter>({
       transformer: superjson,
       links: [
         httpBatchLink({
-          // url: `${process.env.NEXT_API_ENDPOINT}/trpc`,
+          url: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/trpc`,
           // dev endpoint
           // url: "https://4yidn40b2d.execute-api.us-east-1.amazonaws.com/trpc",
           // prod endpoint
-          url: "https://0ckgl1ij9d.execute-api.us-east-1.amazonaws.com/trpc",
+          // url: "https://0ckgl1ij9d.execute-api.us-east-1.amazonaws.com/trpc",
         }),
       ],
     };

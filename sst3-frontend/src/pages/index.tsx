@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { Footer, Button, Label, TextInput } from "flowbite-react";
 import Image from "next/image";
+import Script from "next/script";
 import { BsGithub, BsTwitter } from "react-icons/bs";
 import { trpc } from "../utils/api";
 import { useState } from "react";
@@ -33,6 +34,22 @@ const Home: NextPage = () => {
         <meta name="description" content="BedtimeAI" />
         <link rel="icon" href="/bedtime.png" />
       </Head>
+      <div className="container">
+        {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WVYDYHJC9Q"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-WVYDYHJC9Q');
+        `}
+        </Script>
+      </div>
       <main className="flex h-screen flex-col bg-white dark:bg-gray-900">
         <nav className="border-gray-200 bg-white dark:bg-gray-900">
           <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
